@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- METADATA -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+
+    <!-- No search for now plz -->
+    <meta name="robots" content="noindex">
+
+    <link rel="shortcut icon" type="image/x-icon" href="http://d1qqc1e9kvmdh8.cloudfront.net/img/favicon.ico">
+
+    <link rel="publisher" href="https://plus.google.com/u/0/112727226361732924638" />
+    <meta name="google-site-verification" content="a9pAUAoFTyj7Nut3H5OiQ-fUyyqdwdVT7VcFGICrpTo" />
+
+    <title>{% block title %}Los Angeles Times{% endblock %}</title>
+
+    <!-- CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,200,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/eats.css" />
+    {% block extra-css %}{% endblock %}
+
+    <!-- JAVASCRIPT -->
+    <script src="/static/js/jquery-2.1.4.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    {% block extra-js %}{% endblock %}
+
+    {% block extra-meta %}{% endblock %}
+
+</head>
+<body>
+    {% block container %}
+    <!-- CONTENT GOES HERE -->
+        {% block content %}
+        {% endblock %}
+    {% endblock %}
+
+    {% block stats %}
+        <!-- Google Analytics code -->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-65208330-2', 'auto');
+          ga('send', 'pageview');
+        </script>
+
+        {% block omniture %}
+        <script type="text/javascript">
+            ((((window.trb || (window.trb = {})).data || (trb.data = {})).metrics || (trb.data.metrics = {})).thirdparty = {
+                // Page naming convention:
+                //  <site-slug>:<app-slug>:<path>:<datadesk-slug>-<page-slug>:<content-type>.
+                // Example:
+                //  lat:projects.latimes.com:local:data-pat-tillman:graphic.
+                //  (Don't miss the period at the end.)
+                pageName: 'lat:{% block omniture-pageName %}{% endblock %}.',
+                channel: '{% block omniture-channel %}local{% endblock %}', // Path
+                server: '{% block omniture-server %}www.latimes.com{% endblock %}', // Full domain
+                hier1: 'latimes:{% block omniture-full-tribune-path %}local{% endblock %}', // Path (with latimes prefix)
+                hier2: '{% block omniture-full-latimes-path %}local{% endblock %}', // Path (again)
+                prop2: '{% block omniture-base-latimes-path %}local{% endblock %}', // Path (again!)
+                prop38: '{% block omniture-contenttype %}graphic{% endblock %}', // Content type
+                eVar1: {% block omniture-url %}window.location.href{% endblock %}, // This URL
+                eVar2: {% block omniture-referring-url %}document.referrer{% endblock %}, // The referring URL
+                prop57: 'D=c38',
+                eVar20: 'latimes',
+                eVar21: 'D=c38',
+                eVar34: 'D=ch',
+                eVar35: 'D=gn'
+            });
+        </script>
+        <script src="http://www.latimes.com/thirdpartyservice?disablenav=true"></script>
+    {% endblock %}
+    {% endblock %}
+
+{% block body-bottom %}{% endblock %}
+
+</body>
+    <!--Good with data?-->
+    <!--Tired of grinding on the same old apps?-->
+    <!--Want to use your skills in defense of truth, justice and the American way?-->
+    <!--Email datadesk@latimes.com and let us know you're out there.-->
+</html>

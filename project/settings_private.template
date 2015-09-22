@@ -1,0 +1,12 @@
+SECRET_KEY = "RUN fab makesecret to get a real secret key!"
+
+# Amazon Web Services
+AWS_ACCESS_KEY_ID = '' # The shorter one
+AWS_SECRET_ACCESS_KEY = '' # The longer one
+AWS_BUCKET_NAME = '' # For your static files
+
+# Email
+ADMINS = (
+    ('', ''),
+)
+MANAGERS = ADMINS

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block extra-css %}
+<style>
+    body {
+        background: #2FAD7D;
+    }
+    pre {
+        margin:25% auto 0;
+        text-align: center;
+        color: white;
+        background-color: inherit;
+        border: none;
+    }
+    a {
+        text-align:center;
+        margin: 30px auto 0;
+        display:block;
+        color: white;
+        font-family: Arial, sans-serif;
+        text-decoration: none;
+        font-size:24px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<pre>
+        d8888   .d8888b.      d8888      
+       d8P888  d88P  Y88b    d8P888      
+      d8P 888  888    888   d8P 888      
+     d8P  888  888    888  d8P  888      
+    d88   888  888    888 d88   888      
+888 8888888888 888    888 8888888888 888 
+          888  Y88b  d88P       888      
+          888   "Y8888P"        888      
+</pre>
+<a href="/">Take me back!</a>
+{% endblock %}

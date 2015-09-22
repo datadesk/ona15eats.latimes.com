@@ -1,0 +1,6 @@
+Django
+boto
+django-debug-toolbar
+greeking
+django-bakery
+geopy

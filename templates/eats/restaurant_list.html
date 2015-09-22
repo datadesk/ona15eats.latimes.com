@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block omniture-pageName %}ona15eats:food:ona15eats:data-ona15eats:front{% endblock %}
+{% block omniture-server %}ona15eats.latimes.com{% endblock %}
+{% block omniture-channel %}food:ona15eats{% endblock %}
+{% block omniture-full-tribune-path %}latimes:food:ona15eats{% endblock %}
+{% block omniture-full-latimes-path %}food:ona15eats{% endblock %}
+{% block omniture-base-latimes-path %}food{% endblock %}
+{% block omniture-contenttype %}front{% endblock %}
+
+{% block title %}Eat ONA: A hacker's guide to eating L.A. - {{ block.super }}{% endblock %}
+
+{% block extra-meta %}
+    <meta property="og:title" content="Eat ONA: A hacker's guide to eating L.A."/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:url" content="http://ona15eats.latimes.com//"/>
+    <meta property="og:image" content="http://ona15eats.latimes.com/static/img/share-ona.jpg"/>
+    <meta property="og:site_name" content="ona15eats.latimes.com"/>
+    <meta property="og:description" content="To be blunt, Century City is not a destination for food and drink. But we have your collective backs. Our gift to you: free access to food critic Jonathan Gold’s 101 top restaurants and our own hand-picked favorites. Patches? Fork us on GitHub."/>
+    <meta property="fb:admins" content="1257725335"/>
+    <meta property="fb:app_id" content="171740782909828" />
+    <meta property="twitter:site" content="@latimes" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="http://ona15eats.latimes.com/" />
+    <meta property="twitter:title" content="Eat ONA: A hacker's guide to eating L.A." />
+    <meta property="twitter:description" content="To be blunt, Century City is not a destination for food and drink. But we have your collective backs. Our gift to you: free access to food critic Jonathan Gold’s 101 top restaurants and our own hand-picked favorites. Patches? Fork us on GitHub." />
+    <meta property="twitter:image" content="http://ona15eats.latimes.com/static/img/share-ona.jpg" />
+{% endblock %}
+
+{% block extra-css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/eats.css" />
+{% endblock %}
+
+{% block content %}
+<article>
+    <header>
+    <div class="container" id="topper"> <!-- contains filters -->
+        <div class="row">
+            <div class="col-xs-4 col-sm-3 col-md-3">
+                <h1 class="title-border">Eat <br> ONA</h1>
+            </div>
+
+            <div class="col-xs-8 col-sm-8 col-md-8">
+                <h2>A hacker&rsquo;s guide to eating L.A.</h2>
+            </div>
+
+            <div class="col-xs-12 col-sm-8 col-md-8">
+                <p class="intro">To be blunt, Century City is not a destination for food and drink.
+                    But the <a target="_blank" href="https://twitter.com/latdatadesk">L.A. Times
+                    Data Desk</a> has your back. Our gift: <a href="http://ballots.latimes.com/lists/101-best-restaurants-jonathan-gold/">free access to food critic Jonathan Gold&rsquo;s
+                    101 top restaurants</a> and our own nearby favorites below.
+                </p>
+            </div>
+        </div>
+
+        <div class="row" id="filters">
+            <div class="col-lg-12">
+                <button type="button" class="btn btn-default all">All</button>
+                <button type="button" class="btn btn-default eats active">Eat</button>
+                <button type="button" class="btn btn-default bars">Drink</button>
+                <button type="button" class="btn btn-default extras">Play</button>
+            </div>
+        </div>
+    </div>
+    </header>
+
+    <div id="restaurants">
+    {% for restaurant in object_list %}
+        <section>
+        <div class="container {{ restaurant.category }}">
+            <div class="border-container">
+            <div class="row row-divider">
+                {% if restaurant.photo_url %}
+                <img class="restaurant-img" src="{{ restaurant.photo_url }}/900" title="{{ restaurant.name }}" alt="{{ restaurant.name }}">
+                {% if restaurant.photo_credit %}
+                    <div class="photo_credit">{{ restaurant.photo_credit }}</div>
+                {% endif %}
+                {% endif %}
+                <div class="row">
+                    <div class="col-xs-4 col-md-4 col-lg-4 distance">{{ restaurant.distance }}</div>
+                    <div class="col-xs-8 col-md-8 col-lg-8 name">
+                        <h2>
+                            {% if restaurant.restaurant_url %}
+                                <a target="_blank" href="{{ restaurant.restaurant_url }}">{{ restaurant.name|safe }} <i class="LATLinkOutArrow"></i></a>
+                            {% else %}
+                                {{ restaurant.name|safe }}
+                            {% endif %}
+                        </h2>
+                    </div>
+                </div>
+                <div class="row nerd">
+                    <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                        <a target="_blank" href="{{ restaurant.nerd.nerd_bio_url }}"><img class="nerd-img img-rounded" src="{{ restaurant.nerd.image_url }}100/100x100" title="{{ restaurant.nerd.name }}" alt="{{ restaurant.nerd.name }}" /></a>
+                    </div>
+
+                    <div class="col-xs-8">
+                        <div class="nerd-title">
+                        {{ restaurant.nerd.title }}
+                        </div>
+
+                        <div class="row row-details">
+                            <div class="col-xs-12 col-sm-12 col-md-5 nerd-name">{{ restaurant.nerd.name }}
+                                <div class="row visible-xxs">
+                                    {% if restaurant.address %}
+                                        <ul class="restaurant-tools">
+                                            <li>
+                                                <a href="http://maps.google.com/?q={{ restaurant.address|iriencode }}">
+                                                    <span class="glyphicon glyphicon-map-marker"></span> {{ restaurant.address }}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% if restaurant.address %}
+                            <ul class="restaurant-tools hidden-xxs">
+                                <li>
+                                    <a target="_blank" href="http://maps.apple.com/?q={{ restaurant.address|iriencode }}">
+                                        <span class="glyphicon glyphicon-map-marker"></span> {{ restaurant.address }}
+                                    </a>
+                                </li>
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <div class="hidden-xxs">
+                            <p>{{ restaurant.description|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="visible-xxs">
+                    <p>{{ restaurant.description|safe }}</p>
+                </div>
+            </div> <!-- border container -->
+            </div>
+        </div>
+        </section>
+    {% endfor %}
+    </div>
+<div class="container" id="footer"> <!-- contains filters -->
+        <div class="row">
+        <p>Photos by the Los Angeles Times, unless otherwise noted. <a href="http://www.latimes.com/services/site/la-reprint-request-splash,0,6731163.htmlstory">© <script type="text/javascript">document.write(new Date().getFullYear())</script></a></p>
+        </div>
+</div>
+
+</article>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+
+<script>
+    $(".btn.all").click(function(){
+        $(".btn").removeClass("active");
+        $(this).addClass("active");
+        $("#restaurants .eats, #restaurants .bars, #restaurants .extras").show();
+    });
+
+    $(".btn.eats").click(function(){
+        $(".btn").removeClass("active");
+        $(this).addClass("active");
+        $("#restaurants .eats").show();
+        $("#restaurants .bars, #restaurants .extras").hide();
+    });
+
+    $(".btn.bars").click(function(){
+        $(".btn").removeClass("active");
+        $(this).addClass("active");
+        $("#restaurants .bars").show();
+        $("#restaurants .eats, #restaurants .extras").hide();
+    });
+
+    $(".btn.extras").click(function(){
+        $(".btn").removeClass("active");
+        $(this).addClass("active");
+        $("#restaurants .extras").show();
+        $("#restaurants .eats, #restaurants .bars").hide();
+    });
+</script>
+{% endblock %}
